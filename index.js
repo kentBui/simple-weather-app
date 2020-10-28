@@ -85,13 +85,17 @@ function render(
 //first load data. get data from localstorage
 window.onload = function () {
   let cityData = JSON.parse(localStorage.getItem("cityData"));
-  cityData.temp, cityData.name, cityData.weatherMain, cityData.description;
-  render(
-    cityData.temp,
-    cityData.name,
-    cityData.weatherMain,
-    cityData.description
-  );
+  if (cityData) {
+    cityData.temp, cityData.name, cityData.weatherMain, cityData.description;
+    render(
+      cityData.temp,
+      cityData.name,
+      cityData.weatherMain,
+      cityData.description
+    );
+  } else {
+    render();
+  }
 };
 
 // get data when user find data weather for city
@@ -100,6 +104,9 @@ document.getElementById("btn-search").addEventListener("click", getCity);
 // create timer for auto update data
 setInterval(() => {
   let cityData = JSON.parse(localStorage.getItem("cityData"));
-  console.log(cityData.name);
-  fetchData(cityData.name);
+  if (cityData) {
+    fetchData(cityData.name);
+  } else {
+    fetchData();
+  }
 }, timeLoop);
