@@ -16,7 +16,7 @@ function getCity() {
 // fetch data from api
 async function fetchData(city = "ha noi") {
   const result = await fetch(
-    `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`
   );
   const data = await result.json();
   // console.log(data);
